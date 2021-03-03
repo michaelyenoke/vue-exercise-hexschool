@@ -148,10 +148,13 @@
 </div>
 
 <div id="app">
+  <!--vue-->
   <input type="text" class="form-control" v-model="text">
-  <button class="btn btn-primary mt-1">反轉字串</button>
+  <!-- boostrap: mt-1 -margin top level 1 -->
+  <button class="btn btn-primary mt-1" v-on:click="reverseText">反轉字串</button>
   <div class="mt-3">
-    {{ newText }}
+    {{ newText }}  </br>
+    {{ newText2 }} 
   </div>
 </div>
 
@@ -159,10 +162,28 @@
 var app = new Vue({
   el: '#app',
   data: {
+    // 這裡的 text 是透過 v-model 去調用,如果在該 input 標籤中輸入文字便會成為這裡的 text
     text: '',
-    newText: ''
+    newText: '',
+    newText2:''
   },
   // 請在此撰寫 JavaScript
+  // 加入 methods 物件作為方法
+  methods: {
+    reverseText: function(){
+      // 透過 this 去將 var app 中的 data.text 給讀出來
+      // 在 methods 中讀取資料,會用 this 加上資料的屬性
+      console.log('點我',this.text)
+      // split - 拆開; reverse - 反轉; join - 合併
+      this.newText = this.text.split('').reverse().join('');
+      this.newText2 = this.text
+      // 透過 methods 中的 this 我們可以操作 data 中的內容
+
+      // 測試此funciton是否有用
+      // console.log('點我')
+    }
+  }
+
 });
 </script>
 
